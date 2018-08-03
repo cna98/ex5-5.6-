@@ -1,0 +1,73 @@
+
+
+//جست و جو در آرایه
+
+package ex5;
+
+import java.util.Scanner;
+public class Ex5 {
+	
+	public static int binarySearch(int[] array , int min , int max , int x)
+	{
+		if(max >=min)
+		{
+			int mid = (max + min + (max % 2)) /2;
+			
+			if(array[mid] == x)
+				return x;
+			else if(array[mid] > x)
+				return binarySearch(array, min, mid-1, x);
+			else if(array[mid] < x)
+				return binarySearch(array, mid +1, max, x);
+			else
+				return 1;
+			
+		}
+		else
+			return 1;
+		
+	}
+	public static void main(String[]args)
+	{
+		System.out.print("Enter size of array : ");
+		Scanner input = new Scanner(System.in);
+		int size = input.nextInt();
+		int[] array = new int[size];
+		boolean result1 = false;
+		System.out.println("Enter elements of array : ");
+		
+		for(int i = 0 ; i< size ; i++)
+		{
+			array[i] = input.nextInt();
+		}
+		
+		System.out.print("Enter element to search : ");
+		
+		int x = input.nextInt() , result;
+		
+		result = binarySearch(array, 0 , size - 1, x);
+		
+		if(result == x)
+			System.out.print(String.format("element %d found !", x));
+		else
+			System.out.print(String.format("element %d not found !", x));
+		
+		System.out.print("\nEnter element to search : ");
+		
+		x = input.nextInt();
+		
+	
+		for(int i = 0 ; i < size ; i++) //linear search
+		{
+			if(array[i] == x)
+				result1 = true;
+				
+		}
+		
+		if(result1 == true)
+			System.out.print(String.format("element %d found !", x));
+		else
+			System.out.print(String.format("element %d not found !", x));
+		
+	}
+}
